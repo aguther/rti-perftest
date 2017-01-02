@@ -1,18 +1,37 @@
 # define parent
-FROM centos:latest
+FROM centos:7
 
 # define maintainer
 MAINTAINER Andreas Guther andreas@guther.net
 
-# add RTI Perftest binary package
-ADD https://github.com/rticommunity/rtiperftest/releases/download/v2.0/rti_perftest-2.0-rti_connext_dds-5.2.5-x64Linux.tar.gz /rti_perftest-2.0-rti_connext_dds-5.2.5-x64Linux.tar.gz
+# variables
+ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-2.0-rti_connext_dds-5.2.5-x64Linux.tar.gz
+ENV RTI_PERFTEST_EXTRACT_DIRECTORY=/perftest-2.0-RTI-Connext-DDS-5.2.5-x64Linux2.6gcc4.1.1
+ENV RTI_PERFTEST_TARGET_DIRECTORY_PARENT=/opt/rti/connext-dds
+ENV RTI_PERFTEST_TARGET_DIRECTORY_NAME=perftest
 
-# extract binary
-RUN tar xzf /rti_perftest-2.0-rti_connext_dds-5.2.5-x64Linux.tar.gz
+# add RTI Perftest binary package
+ADD https://github.com/rticommunity/rtiperftest/releases/download/v2.0/rti_perftest-2.0-rti_connext_dds-5.2.5-x64Linux.tar.gz ${RTI_PERFTEST_ARCHIVE}
+
+# extract archive
+RUN tar xzf $RTI_PERFTEST_ARCHIVE
+
+# delete archive
+RUN rm -f $RTI_PERFTEST_ARCHIVE
+
+# create target directory
+RUN mkdir -p $RTI_PERFTEST_TARGET_DIRECTORY_PARENT
+
+# move extracted directory to target directory
+RUN mv $RTI_PERFTEST_EXTRACT_DIRECTORY -t $RTI_PERFTEST_TARGET_DIRECTORY_PARENT
+RUN mv $RTI_PERFTEST_TARGET_DIRECTORY_PARENT$RTI_PERFTEST_EXTRACT_DIRECTORY $RTI_PERFTEST_TARGET_DIRECTORY_PARENT/$RTI_PERFTEST_TARGET_DIRECTORY_NAME
+
+# create link
+RUN ln -s $RTI_PERFTEST_TARGET_DIRECTORY_PARENT/$RTI_PERFTEST_TARGET_DIRECTORY_NAME/bin/x64Linux2.6gcc4.1.1/release/perftest_cpp /usr/bin/perftest_cpp
 
 # set stop signal
-STOPSIGNAL 9
+STOPSIGNAL SIGKILL
 
 # define work directory and entrypoint
-WORKDIR /perftest-2.0-RTI-Connext-DDS-5.2.5-x64Linux2.6gcc4.1.1
-ENTRYPOINT ["/perftest-2.0-RTI-Connext-DDS-5.2.5-x64Linux2.6gcc4.1.1/bin/x64Linux2.6gcc4.1.1/release/perftest_cpp"]
+WORKDIR ${RTI_PERFTEST_TARGET_DIRECTORY_PARENT}/${RTI_PERFTEST_TARGET_DIRECTORY_NAME}
+ENTRYPOINT ["/usr/bin/perftest_cpp"]
