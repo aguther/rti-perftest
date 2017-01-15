@@ -4,6 +4,12 @@ FROM centos:7
 # define maintainer
 MAINTAINER Andreas Guther andreas@guther.net
 
+# labels
+LABEL version="2.0" \
+      version.application="2.0" \
+      version.rti="5.2.5" \
+      description="Docker image with RTI Perftest. RTI Perftest is a command-line application that measures the Latency and Throughput of very configurable scenarios that use RTI Connext DDS middleware to send messages."
+
 # environment variables
 ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-2.0-rti_connext_dds-5.2.5-x64Linux.tar.gz \
     RTI_PERFTEST_EXTRACT_DIRECTORY=/perftest-2.0-RTI-Connext-DDS-5.2.5-x64Linux2.6gcc4.1.1 \
