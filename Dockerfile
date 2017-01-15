@@ -42,9 +42,6 @@ RUN groupadd -r app \
 # switch user to non-root
 USER app
 
-# set stop signal
-STOPSIGNAL SIGKILL
-
 # define work directory and entrypoint
 WORKDIR "${RTI_PERFTEST_TARGET_DIRECTORY_PARENT}/${RTI_PERFTEST_TARGET_DIRECTORY_NAME}"
 ENTRYPOINT ["/usr/bin/perftest_cpp"]
