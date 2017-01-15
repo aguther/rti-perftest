@@ -11,11 +11,13 @@ ARG target_platform=x64Linux
 ARG target_compiler=2.6gcc4.1.1
 
 # labels
-LABEL version="$version" \
-      version.application="$version" \
+LABEL name="RTI Perftest" \
+      vendor="RTI" \
+      license="EPLv1" \
+      version="$version" \
       version.rti="$version_rti" \
       target="$target_platform$target_compiler" \
-      description="Docker image with RTI Perftest. RTI Perftest is a command-line application that measures the Latency and Throughput of very configurable scenarios that use RTI Connext DDS middleware to send messages."
+      description="RTI Perftest is a command-line application that measures the Latency and Throughput of very configurable scenarios that use RTI Connext DDS middleware to send messages."
 
 # environment variables
 ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-${version}-rti_connext_dds-${version_rti}-${target_platform}.tar.gz \
