@@ -5,7 +5,7 @@ FROM centos:7
 MAINTAINER Andreas Guther andreas@guther.net
 
 # arguments
-ARG version=2.0
+ARG version=2.1
 ARG version_rti=5.2.5
 ARG target_platform=x64Linux
 ARG target_compiler=2.6gcc4.1.1
@@ -26,7 +26,7 @@ ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-${version}-rti_connext_dds-${version_rti}
     RTI_PERFTEST_TARGET_DIRECTORY_NAME=perftest
 
 # add RTI Perftest binary package
-ADD https://github.com/rticommunity/rtiperftest/releases/download/v${version}/rti_perftest-${version}-rti_connext_dds-${version_rti}-${target_platform}.tar.gz ${RTI_PERFTEST_ARCHIVE}
+ADD https://github.com/rticommunity/rtiperftest/releases/download/v${version}/rti_perftest-${version}_${target_platform}.tar.gz ${RTI_PERFTEST_ARCHIVE}
 
 # extract archive
 RUN groupadd -r app \
