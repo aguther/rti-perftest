@@ -19,7 +19,7 @@ LABEL name="RTI Perftest" \
 
 # environment variables
 ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-${version}-${target_platform}.tar.gz \
-    RTI_PERFTEST_EXTRACT_DIRECTORY=/perftest-${version}-RTI-Connext-DDS-${target_platform}${target_compiler} \
+    RTI_PERFTEST_EXTRACT_DIRECTORY=/rti_perftest-${version}_${target_platform}${target_compiler} \
     RTI_PERFTEST_TARGET_DIRECTORY_PARENT=/opt/rti/connext-dds \
     RTI_PERFTEST_TARGET_DIRECTORY_NAME=perftest
 
