@@ -5,23 +5,21 @@ FROM centos:7
 MAINTAINER Andreas Guther andreas@guther.net
 
 # arguments
-ARG version=2.1
-ARG version_rti=5.2.5
+ARG version=2.3.1
 ARG target_platform=x64Linux
-ARG target_compiler=2.6gcc4.1.1
+ARG target_compiler=3gcc4.8.2
 
 # labels
 LABEL name="RTI Perftest" \
       vendor="RTI" \
       license="EPLv1" \
       version="$version" \
-      version.rti="$version_rti" \
       target="$target_platform$target_compiler" \
       description="RTI Perftest is a command-line application that measures the Latency and Throughput of very configurable scenarios that use RTI Connext DDS middleware to send messages."
 
 # environment variables
-ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-${version}-rti_connext_dds-${version_rti}-${target_platform}.tar.gz \
-    RTI_PERFTEST_EXTRACT_DIRECTORY=/perftest-${version}-RTI-Connext-DDS-${version_rti}-${target_platform}${target_compiler} \
+ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-${version}-${target_platform}.tar.gz \
+    RTI_PERFTEST_EXTRACT_DIRECTORY=/perftest-${version}-RTI-Connext-DDS-${target_platform}${target_compiler} \
     RTI_PERFTEST_TARGET_DIRECTORY_PARENT=/opt/rti/connext-dds \
     RTI_PERFTEST_TARGET_DIRECTORY_NAME=perftest
 
