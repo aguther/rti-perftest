@@ -2,7 +2,7 @@
 FROM centos:7
 
 # define maintainer
-MAINTAINER Andreas Guther andreas@guther.net
+LABEL maintainer="andreas@guther.net"
 
 # arguments
 ARG version=2.3.1
