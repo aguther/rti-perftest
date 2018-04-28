@@ -5,7 +5,7 @@ FROM centos:7
 LABEL maintainer="andreas@guther.net"
 
 # arguments
-ARG version=2.3.1
+ARG version=2.3.2
 ARG target_platform=x64Linux
 ARG target_compiler=3gcc4.8.2
 
