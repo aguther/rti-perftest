@@ -1,5 +1,5 @@
 # define parent
-FROM centos:7
+FROM krallin/centos-tini:7
 
 # define maintainer
 LABEL maintainer="andreas@guther.net"
@@ -42,4 +42,4 @@ USER app
 
 # define work directory and entrypoint
 WORKDIR "${RTI_PERFTEST_TARGET_DIRECTORY_PARENT}/${RTI_PERFTEST_TARGET_DIRECTORY_NAME}"
-ENTRYPOINT ["/usr/bin/perftest_cpp"]
+ENTRYPOINT ["/usr/local/bin/tini", "--", "/usr/bin/perftest_cpp"]
