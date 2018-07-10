@@ -5,7 +5,7 @@ FROM centos:7
 LABEL maintainer="andreas@guther.net"
 
 # arguments
-ARG version=2.3.2
+ARG version=2.4
 ARG target_platform=x64Linux
 ARG target_compiler=3gcc4.8.2
 
@@ -24,7 +24,7 @@ ENV RTI_PERFTEST_ARCHIVE=/rti_perftest-${version}-${target_platform}.tar.gz \
     RTI_PERFTEST_TARGET_DIRECTORY_NAME=perftest
 
 # add RTI Perftest binary package
-ADD https://github.com/rticommunity/rtiperftest/releases/download/v${version}/rti_perftest-${version}_${target_platform}.tar.gz ${RTI_PERFTEST_ARCHIVE}
+ADD https://github.com/rticommunity/rtiperftest/releases/download/${version}/rti_perftest-${version}_${target_platform}.tar.gz ${RTI_PERFTEST_ARCHIVE}
 
 # extract archive
 RUN groupadd -r app \
